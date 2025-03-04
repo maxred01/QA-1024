@@ -1,37 +1,40 @@
-name: Pylint Check
+name: Code Checks
+
 on:
   pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  lint:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      # Установите Python и зависимости
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install pylint
+      - name: Install dependencies
         run: |
-          pip install --upgrade pylint
+          python -m pip install --upgrade pip
+          pip install pylint pytest
 
-      - name: Check teacher access
-        id: check_teacher
-        env:
-          TEACHERS: ${{ secrets.TEACHERS }}
+      # Запуск линтера (только для студентов)
+      - name: Run Linter
+        if: github.actor != 'maxred01'
         run: |
-          if [[ "$TEACHERS" == *"${{ github.actor }}"* ]]; then
-            echo "teacher_override=true" >> $GITHUB_OUTPUT
-          else
-            echo "teacher_override=false" >> $GITHUB_OUTPUT
-          fi
+          pylint ./src
 
-      - name: Run pylint
-        if: steps.check_teacher.outputs.teacher_override != 'true'
+      # Запуск тестов (только для студентов)
+      - name: Run Tests
+        if: github.actor != 'maxred01'
         run: |
-          pylint $(git ls-files '*.py') || exit 1  # Строгий режим: ошибка при любом warning
+          pytest ./tests  # Настройте путь к тестам
+
+      # Обход проверок для преподавателя
+      - name: Bypass checks for teacher
+        if: github.actor == 'maxred01'
+        run: echo "Проверки пропущены (преподаватель)" && exit 0
