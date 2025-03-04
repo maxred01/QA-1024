@@ -1,23 +1,37 @@
-name: Pylint
-
-on: [push]
+name: Pylint Check
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-        pylint $(git ls-files '*.py')
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install pylint
+        run: |
+          pip install --upgrade pylint
+
+      - name: Check teacher access
+        id: check_teacher
+        env:
+          TEACHERS: ${{ secrets.TEACHERS }}
+        run: |
+          if [[ "$TEACHERS" == *"${{ github.actor }}"* ]]; then
+            echo "teacher_override=true" >> $GITHUB_OUTPUT
+          else
+            echo "teacher_override=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run pylint
+        if: steps.check_teacher.outputs.teacher_override != 'true'
+        run: |
+          pylint $(git ls-files '*.py') || exit 1  # Строгий режим: ошибка при любом warning
