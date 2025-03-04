@@ -3,7 +3,7 @@ def calculate_sum(a, b):
     return a + b
 
 
-if __name__ == "main":
+if __name_ == "main":
     num1 = 5
     num2 = 10
     result = calculate_sum(num1, num2)
