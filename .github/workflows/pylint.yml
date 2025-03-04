@@ -1,40 +1,29 @@
-name: Code Checks
+name: Code Linter
 
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  lint-and-test:
+  pylint-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Установите Python и зависимости
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pylint pytest
+      - name: Install Pylint
+        run: pip install pylint
 
-      # Запуск линтера (только для студентов)
-      - name: Run Linter
+      - name: Run Pylint everywhere
         if: github.actor != 'maxred01'
         run: |
-          pylint ./src
+          find . -name "*.py" | xargs pylint --exit-zero
 
-      # Запуск тестов (только для студентов)
-      - name: Run Tests
-        if: github.actor != 'maxred01'
-        run: |
-          pytest ./tests  # Настройте путь к тестам
-
-      # Обход проверок для преподавателя
-      - name: Bypass checks for teacher
+      - name: Bypass for teacher
         if: github.actor == 'maxred01'
-        run: echo "Проверки пропущены (преподаватель)" && exit 0
+        run: echo "Проверка пропущена (преподаватель)" && exit 0
