@@ -25,16 +25,3 @@
 ![Allure](https://img.shields.io/badge/-Allure-090909?style=plastic&logo=AppacheAllure&logoColor=47C5FB)
 ![Jmeter](https://img.shields.io/badge/-Jmeter-090909?style=plastic&logo=Appache&logoColor=47C5FB)
 ![SQL](https://img.shields.io/badge/-SQL-090909?style=plastic&logo=SQL&logoColor=47C5FB)
-
-
-
-### :fire: My Stats 
-
-[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=maxred01&theme=dark&border_radius=10&date_format=j%20M%5B%20Y%5D&mode=weekly)](https://git.io/streak-stats)
-
-
-## :bar_chart:Git stats
-
-![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=maxred01&theme=tokyonight)
-![](http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=maxred01&theme=tokyonight)
-![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=maxred01&theme=tokyonight)
