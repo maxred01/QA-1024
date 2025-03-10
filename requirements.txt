@@ -16,9 +16,5 @@ pytest-cov==4.0.0  # Для покрытия кода
 # Асинхронные тесты
 pytest-asyncio==0.20.3  # Для тестов с asyncio
 
-# Библиотеки для работы с базами данных
-SQLAlchemy==1.4.47  # Для работы с БД
-pytest-sqlalchemy==0.8.0  # Для тестирования с использованием SQLAlchemy
-
 # Убедитесь, что у вас установлен Allure Commandline
 # Инструкции по установке можно найти на https://docs.qameta.io/allure/#_installing_a_commandline
