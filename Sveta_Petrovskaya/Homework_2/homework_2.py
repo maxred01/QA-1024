@@ -1,6 +1,5 @@
 import requests
 
-
 #Отработка GET-запросов и парсинга JSON
 response = requests.get("https://httpbin.org/json").json()
 print(f"Title: {response['slideshow']['title']}")
