@@ -36,6 +36,5 @@ with requests.Session() as s:
     with open("test.txt", "rb") as f:
         response = s.post("https://httpbin.org/post", files={"file": f})
         response.raise_for_status()
-
     print(f"Cookie: {cookie}")
     print(f"File size: {len(file_content)}")
