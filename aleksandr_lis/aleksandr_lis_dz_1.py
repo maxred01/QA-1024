@@ -19,3 +19,4 @@ except requests.exceptions.HTTPError as err:
     print(f"Ошибка: {response.status_code}")
 except requests.exceptions.RequestException:
     print("Сервер недоступен")
+
