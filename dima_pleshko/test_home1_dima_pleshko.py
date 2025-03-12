@@ -41,6 +41,8 @@ except requests.exceptions.HTTPError as error_code:
 except requests.exceptions.RequestException as error_code:
     print(f"Ошибка нечто другое: {error_code}")
 
+print(response.json()['form'])
+
 #Задание
 #Создайте сессию через requests.Session()
 #Через сессию выполните:
@@ -60,4 +62,4 @@ with open('test_file.txt') as f:
     response5 = requests.post('https://httpbin.org/post', files=files)
 
 print(f'{response3.json()["cookies"]["test_cookie"]}')
-print(f'{os.path.getsize('test_file.txt')}')
+print(f'{os.path.getsize("test_file.txt")}')
