@@ -21,7 +21,7 @@ TEST_NAMES=[
 url="https://api.nationalize.io/"
 
 @pytest.mark.parametrize('name',TEST_NAMES)
-def test_nationalize_api(name):
+def test_nationalize_api_easy(name):
     params = {'name': name}
     response = requests.get(url, params=params)
     assert response.status_code == 200, f'Error, status code: {response.status_code}'
@@ -47,7 +47,7 @@ TEST_NAMES_COUNTRIES_CASE_2 = [
 ]
 
 @pytest.mark.parametrize('name, country_id',TEST_NAMES_COUNTRIES_CASE_2 )
-def test_nationalize_api(name, country_id):
+def test_nationalize_api_normal(name, country_id):
     params_name = {'name': name}
     response = requests.get(url, params=params_name)
     response = response.json()
@@ -78,7 +78,7 @@ def generate_edge_cases():
     yield 'Cyrillic_and_Latin', 'Mishа'
 
 @pytest.mark.parametrize("case_name,input_data", generate_edge_cases())
-def test_edge_cases(case_name, input_data):
+def test_nationalize_api_hard(case_name, input_data):
     params_name = {'input_data': input_data}
     response = requests.get(url, params=params_name)
     try:
@@ -88,4 +88,5 @@ def test_edge_cases(case_name, input_data):
         print(f"Mistake 400-500: {error_code}")
     except requests.exceptions.RequestException as error_code:
         print(f"Mistake  something else: {error_code}")
+    assert response.status_code == 200, f'Error, status code{response.status_code}'
 
