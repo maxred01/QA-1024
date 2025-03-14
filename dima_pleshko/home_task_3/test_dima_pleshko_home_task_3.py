@@ -54,7 +54,7 @@ def test_nationalize_api(name, country_id):
     check.is_in('country_id', response['country'][0], 'No key value country')
     for i in range(len(response['country'])):
         check.between(response['country'][i]['probability'], 0.0, 1.0)
-        check.equal(response['country'] is not None, True, 'No country')
+    check.equal(response['country'] is not None, True, 'No country')
 
 # Требования:
 # Создайте параметризованные тесты для:
