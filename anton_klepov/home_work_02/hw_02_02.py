@@ -1,5 +1,3 @@
-from pickle import FALSE
-
 import requests
 
 url = 'https://httpbin.org/post'
