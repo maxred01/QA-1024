@@ -15,7 +15,7 @@ NAME=[
 @allure.testcase("TC-456")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.parametrize('name',NAME)
-def test_21vek_status_code():
+def test_21vek_status_code(name):
     url = 'https://www.21vek.by/'
     respons = requests.get(url, params=name)
     allure.dynamic.title(f'test login for users: {name}')
