@@ -12,8 +12,8 @@ def test_easy(name,country):
     assert response.status_code == 200
     response_json = response.json()
     assert "name" in  response_json, f'Поле "name" отсутствует в ответе для имени {name}'
-    assert "country" in response_json,f'Поле "country_id" отсутствует в ответе для имени {country}'
-    assert isinstance(response_json["country"],list), f"Поле 'country_id' должно быть списком, получено {type(response_json['country'])}"
+    assert "country" in response_json,f'Поле "country" отсутствует в ответе для имени {country}'
+    assert isinstance(response_json["country"],list), f"Поле 'country' должно быть списком, получено {type(response_json['country'])}"
     for country in response_json["country"]:
         probability=country["probability"]
         assert 0 <= probability <= 1
