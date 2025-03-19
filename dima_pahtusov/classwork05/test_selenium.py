@@ -25,7 +25,6 @@ def test_hoster():
     text_name = 'testmaxtest'
     input.send_keys(text_name)
 
-
     assert text_error.is_displayed() == False
     button.click()
     time.sleep(2)
