@@ -16,7 +16,7 @@ driver.find_element(By.XPATH, '//span[@class="rct-checkbox"]').click()
 
 
 
-time.sleep(5)
+time.sleep(5
 
 
 # Закрыть браузер
