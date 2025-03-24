@@ -1,4 +1,4 @@
-import pytest
+'''import pytest
 import requests
 import pytest_check as check
 
@@ -24,7 +24,7 @@ def test_nationalize_api(name):
     check.is_in("country", data, "Ответ содержит ключ 'country'")
     check.equal(data["name"], "Inna")
 
-'''def test_class_work():
+def test_class_work():
     url = 'https://universities.hipolabs.com/search?country=Kazakhstan'
     respons = requests.get(url)
     data = respons.json()

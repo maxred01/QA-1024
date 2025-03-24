@@ -37,9 +37,9 @@ def test_nationalize_api(name):
     response=requests.get(url,params=params)
     assert response.status_code==200,f"Ожидался код 200,получен{response.status_code}"
     data=response.json()
-   check.is_in("name",data"Ответ не содержит ключ 'name'")
-   check.is_in("country",data"Ответ не содержит ключ 'country'")
-   check.equal(data['name']name)
+    check.is_in("name",data"Ответ не содержит ключ 'name'")
+    check.is_in("country",data"Ответ не содержит ключ 'country'")
+    check.equal(data['name']name)
 
 
 
