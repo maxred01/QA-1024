@@ -1,5 +1,4 @@
 import requests
-import os
 
 with requests.Session() as session:
     # Сохраняет куки и заголовки между запросами
@@ -8,7 +7,7 @@ with requests.Session() as session:
     print(f'Cookie: {response.json()['cookies']}')
 
 with open('file.txt', 'rb') as f:
-    files = {'file': f}
-    response = requests.post('https://httpbin.org/post', files=files)
-    file_size = os.path.getsize('file.txt')
+    # содержание файла: Anton QA
+    file_response = session.post('https://httpbin.org/post', files={'file': f})
+    file_size = len(file_response.json()['files']['file'])
     print(f'Размер файла {"file.txt"}: {file_size} Bytes')
