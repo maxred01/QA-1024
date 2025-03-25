@@ -1,0 +1,25 @@
+import requests
+import pytest
+import pytest_cheeck as cheeck
+
+
+TEST_NAMES =[
+    "Anna",
+    "Dzmitry",
+    "Layne",
+    "John"
+    "Sergey"
+]
+
+@pytest.mark.paramitrize("name",TEST_NAMES)
+def test_nationalize_api(name):
+    url='https://api.nationalize.io/'
+    response=requests.get(url)
+    data=response.json
+    assert response.status_code==200,f'Ожидался ответ 200,{response.status_code}'
+    assert 'name' in data, "Ответ содержит ключ 'name'"
+    assert data['name']==name,f"Ожидалось имя{name}, получено {data ['name']}"
+
+
+
+
