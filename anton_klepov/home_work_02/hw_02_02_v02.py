@@ -13,5 +13,8 @@ elif response.status_code != 200 and response.status_code < 400:
 try:
     response = requests.post(url, data)
     response.raise_for_status()
-except requests.exceptions.HTTPError as err:
+    print(response.json()['form'])
+ except requests.exceptions.HTTPError as err:
     print(f"Ошибка: {err}")
+except requests.exceptions.RequestException:
+    print('Сервер недоступен')
