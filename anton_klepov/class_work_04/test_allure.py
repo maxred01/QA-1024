@@ -17,3 +17,4 @@ def test_hoster_status_code():
     with allure.step("Проверка статус кода 201"):
         allure.attach(respons_date, name="log", attachment_type=allure.attachment_type.TEXT)
         assert respons.status_code == 201, f'статус код равен {respons.status_code}'
+
